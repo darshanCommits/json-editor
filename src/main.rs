@@ -3,10 +3,8 @@ pub mod ui;
 
 use std::io::{self, Error};
 
-use crossterm::{
-    event::DisableMouseCapture,
-    terminal::{self, LeaveAlternateScreen},
-};
+use app::{run_app, App};
+use crossterm::{event::DisableMouseCapture, terminal::LeaveAlternateScreen};
 use ratatui::{
     crossterm::{
         event::EnableMouseCapture,
@@ -25,7 +23,7 @@ fn main() -> Result<(), Box<Error>> {
     let backend = CrosstermBackend::new(stderr);
     let mut terminal = Terminal::new(backend)?;
 
-    let mut app = App::new();
+    let mut app = App::default();
 
     let res = run_app(&mut terminal, &mut app);
 
